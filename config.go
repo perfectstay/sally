@@ -1,7 +1,6 @@
 package main
 
 import (
-	"os"
 	"strings"
 
 	yaml "gopkg.in/yaml.v3"
@@ -68,16 +67,11 @@ type PackageConfig struct {
 	DocBadge string `yaml:"doc_badge"`
 }
 
-// Parse takes a path to a yaml file and produces a parsed Config
-func Parse(path string) (*Config, error) {
+// Parse takes yaml data and produces a parsed Config
+func Parse(data string) (*Config, error) {
 	var c Config
 
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := yaml.Unmarshal(data, &c); err != nil {
+	if err := yaml.Unmarshal([]byte(data), &c); err != nil {
 		return nil, err
 	}
 
