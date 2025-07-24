@@ -5,6 +5,7 @@ import (
 	"embed"
 	"errors"
 	"html/template"
+	"log"
 	"net/http"
 	"path"
 	"slices"
@@ -93,9 +94,13 @@ func CreateHandler(config *Config, templates *template.Template) (http.Handler, 
 func requireMethod(method string, handler http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.Method != method {
+			log.Printf("Handling 404 %s %s", r.Method, r.URL.Path)
+
 			http.NotFound(w, r)
 			return
 		}
+
+		log.Printf("Handling %s %s", r.Method, r.URL.Path)
 
 		handler.ServeHTTP(w, r)
 	})
