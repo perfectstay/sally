@@ -1,12 +1,12 @@
 module go.uber.org/sally
 
-go 1.22
+go 1.23.0
 
 require (
 	github.com/aws/aws-lambda-go v1.49.0
 	github.com/awslabs/aws-lambda-go-api-proxy v0.16.2
 	github.com/stretchr/testify v1.10.0
-	golang.org/x/net v0.34.0
+	golang.org/x/net v0.38.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 
