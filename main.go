@@ -9,6 +9,7 @@ import (
 	"path/filepath"
 
 	"github.com/aws/aws-lambda-go/lambda"
+	"github.com/awslabs/aws-lambda-go-api-proxy/httpadapter"
 )
 
 func main() {
@@ -39,7 +40,7 @@ func main() {
 		log.Fatalf("Failed to create handler: %v", err)
 	}
 
-	lambda.Start(handler)
+	lambda.Start(httpadapter.NewV2(handler).ProxyWithContext)
 }
 
 func getCombinedTemplates(dir string) (*template.Template, error) {

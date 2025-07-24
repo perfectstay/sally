@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"os"
 	"strings"
 
@@ -76,6 +77,8 @@ func Parse(path string) (*Config, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	log.Printf("Read config from %s: %s", path, string(data))
 
 	if err := yaml.Unmarshal(data, &c); err != nil {
 		return nil, err
