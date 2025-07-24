@@ -6,22 +6,20 @@ import (
 	"flag"
 	"html/template"
 	"log"
-	"os"
 	"path/filepath"
 
 	"github.com/aws/aws-lambda-go/lambda"
 )
 
 func main() {
+	yml := flag.String("yml", "/sally.yaml", "yaml file to read config from")
 	tpls := flag.String("templates", "", "directory of .html templates to use")
 	flag.Parse()
 
-	yml := os.Getenv("SALLY_CONFIG")
-
-	log.Printf("Parsing yaml at path: %s\n", yml)
-	config, err := Parse(yml)
+	log.Printf("Parsing yaml at path: %s\n", *yml)
+	config, err := Parse(*yml)
 	if err != nil {
-		log.Fatalf("Failed to parse %s: %v", yml, err)
+		log.Fatalf("Failed to parse %s: %v", *yml, err)
 	}
 
 	var templates *template.Template

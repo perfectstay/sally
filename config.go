@@ -1,6 +1,7 @@
 package main
 
 import (
+	"os"
 	"strings"
 
 	yaml "gopkg.in/yaml.v3"
@@ -68,10 +69,15 @@ type PackageConfig struct {
 }
 
 // Parse takes yaml data and produces a parsed Config
-func Parse(data string) (*Config, error) {
+func Parse(path string) (*Config, error) {
 	var c Config
 
-	if err := yaml.Unmarshal([]byte(data), &c); err != nil {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := yaml.Unmarshal(data, &c); err != nil {
 		return nil, err
 	}
 
