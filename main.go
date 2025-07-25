@@ -40,7 +40,7 @@ func main() {
 		log.Fatalf("Failed to create handler: %v", err)
 	}
 
-	lambda.Start(httpadapter.NewV2(handler).ProxyWithContext)
+	lambda.Start(httpadapter.New(handler).Proxy)
 }
 
 func getCombinedTemplates(dir string) (*template.Template, error) {
