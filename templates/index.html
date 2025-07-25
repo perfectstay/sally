@@ -17,8 +17,52 @@
             .inline-header { display: none; }
         }
 
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: translateX(0px) translateY(0px);
+            }
+            25% {
+                transform: translateX(calc(100vw - 100px)) translateY(0px);
+            }
+            50% {
+                transform: translateX(calc(100vw - 100px)) translateY(calc(100vh - 100px));
+            }
+            75% {
+                transform: translateX(0px) translateY(calc(100vh - 100px));
+            }
+            100% {
+                transform: translateX(0px) translateY(0px);
+            }
+        }
+
+        body {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: rainbow 15s ease infinite;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .bouncing-cat {
+            position: fixed;
+            width: 80px;
+            height: 80px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="60" r="30" fill="%23ff8c42"/><circle cx="40" cy="50" r="3" fill="%23000"/><circle cx="60" cy="50" r="3" fill="%23000"/><polygon points="30,30 40,10 50,30" fill="%23ff8c42"/><polygon points="70,30 60,10 50,30" fill="%23ff8c42"/><path d="M45 65 Q50 70 55 65" stroke="%23000" stroke-width="2" fill="none"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            animation: bounce 8s linear infinite;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
         @media (prefers-color-scheme: dark) {
-            body { background-color: #333; color: #ddd; }
+            body { color: #ddd; }
             a { color: #ddd; }
             a:visited { color: #bbb; }
             .description { color: #bbb; }
@@ -26,6 +70,7 @@
         }
     </style>
     <body>
+        <div class="bouncing-cat"></div>
         <div class="container">
             <div class="row table-header">
                 <div class="five columns"><strong>Package</strong></div>
