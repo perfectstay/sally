@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta name="go-import" content="{{ .ModulePath }} {{ .VCS }} https://{{ .RepoURL }}">
-        <meta http-equiv="refresh" content="0; url={{ .DocURL }}">
+        <meta http-equiv="refresh" content="0; url={{ .RepoURL }}">
         <style>
             @media (prefers-color-scheme: dark) {
                 body { background-color: #333; color: #ddd; }
@@ -12,6 +12,6 @@
         </style>
     </head>
     <body>
-        Nothing to see here. Please <a href="{{ .DocURL }}">move along</a>.
+        Nothing to see here. Please <a href="{{ .RepoURL }}">move along</a>.
     </body>
 </html>
